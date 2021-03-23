@@ -30,6 +30,7 @@ export const Container = styled.form`
     width: 100%;
     height: 4rem;
     padding: 0 1.5rem;
+    margin-top: 1rem;
     background: var(--green);
     border-radius: 0.25rem;
     border: 0;
