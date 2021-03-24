@@ -18,7 +18,7 @@ export function NewTransactionModal({
 }: NewTransactionModalProps) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [type, setType] = useState("deposit");
 
   function handleCreateNewTransaction(event: FormEvent) {
@@ -26,8 +26,9 @@ export function NewTransactionModal({
     const data = {
       title,
       category,
-      value,
       type,
+      amount,
+      createdAt: new Date(),
     };
 
     api.post("/transactions", data);
@@ -59,8 +60,8 @@ export function NewTransactionModal({
         <input
           type="number"
           placeholder="Valor"
-          value={value}
-          onChange={({ target }) => setValue(Number(target.value))}
+          value={amount}
+          onChange={({ target }) => setAmount(Number(target.value))}
         />
 
         <TransactionTypeContainer>
@@ -79,9 +80,9 @@ export function NewTransactionModal({
           <RadioBox
             type="button"
             onClick={() => {
-              setType("withdrawn");
+              setType("withdraw");
             }}
-            isActive={type === "withdrawn"}
+            isActive={type === "withdraw"}
             activeColor="red"
           >
             <img src={outcomeImg} alt="Saída" />
